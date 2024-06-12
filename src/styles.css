@@ -1,0 +1,176 @@
+:root {
+    --primary-color: #ff6600;
+    --secondary-color: #545252;
+    --text-color: #e5dddd;
+    --background-image: url('./assets/v5.png');
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+  }
+  
+  .startup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .overlay {
+    background-color: rgba(220, 206, 206, 0.8);
+    padding: 20px;
+    margin-left: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin-left: 0%;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form,
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    border: 1px solid #f3efef;
+    border-radius: 4px;
+  }
+  
+  .toggle-button {
+    margin-top: 20px;
+  }
+  
+  .toggle-button button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle-button button:hover {
+    background-color: #ff7f1a;
+  }
+  
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    margin-left: 75%;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .dashboard-content {
+    background-color: rgba(58, 55, 55, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(173, 158, 158, 0.1);
+  }
+  
+  .token-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .token-input input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .token-input button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .token-input button:hover {
+    background-color: #ff7f1a;
+  }
+  
+  .crypto-info table,
+  .token-list ul {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .crypto-info table th,
+  .crypto-info table td {
+    padding: 10px;
+    border: 1px solid #232121;
+    text-align: left;
+  }
+  
+  .nav-buttons {
+    margin-bottom: 20px;
+  }
+  
+  .nav-buttons button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-buttons button:hover {
+    background-color: #ff7f1a;
+  }
+
+  .crypto-info {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .crypto-info h2 {
+    text-align: center;
+  }
+  
+  .scrollable-container {
+    max-height: 400px; /* Adjust this height as needed */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #3d3c3c;
+  }
+  
+  .scrollable-container pre {
+    white-space: pre-wrap; /* Ensure long lines wrap */
+    word-wrap: break-word; /* Break long words if necessary */
+  }
