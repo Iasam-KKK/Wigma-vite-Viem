@@ -41,7 +41,6 @@ const CryptoInfo = () => {
 
   return (
     <div className="crypto-info">
-      <h2>Crypto Info</h2>
       {error ? (
         <p>{error}</p>
       ) : cryptoInfo ? (

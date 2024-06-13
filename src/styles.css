@@ -1,88 +1,93 @@
 :root {
-    --primary-color: #ff6600;
-    --secondary-color: #545252;
-    --text-color: #e5dddd;
-    --background-image: url('./assets/v5.png');
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    background-color: var(--secondary-color);
-    background-image: var(--background-image);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(5px);
-  }
-  
-  .startup-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-  }
-  
-  .overlay {
-    background-color: rgba(220, 206, 206, 0.8);
-    padding: 20px;
-    margin-left: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .form-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin-left: 0%;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-form,
-  .register-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .form-group input {
-    padding: 8px;
-    border: 1px solid #f3efef;
-    border-radius: 4px;
-  }
-  
-  .toggle-button {
-    margin-top: 20px;
-  }
-  
-  .toggle-button button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .toggle-button button:hover {
-    background-color: #ff7f1a;
-  }
+  --primary-color: #ff6600;
+  --secondary-color: #545252;
+  --text-color: #333;
+  --background-image: url('./assets/v5.png');
+  --background-blur: blur(5px);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary-color);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: var(--background-blur);
+}
+
+.startup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(220, 206, 206, 0.8);
+  padding: 30px;
+  margin-left: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  margin-left: 0%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: var(--text-color);
+}
+
+.toggle-button {
+  margin-top: 20px;
+}
+
+.toggle-button button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.toggle-button button:hover {
+  background-color: #ff7f1a;
+}
   
   .dashboard {
     display: flex;
     justify-content: center;
-    margin-left: 75%;
+    margin-left: 40%;
     align-items: center;
     height: 100vh;
     position: relative;
@@ -163,11 +168,11 @@
   }
   
   .scrollable-container {
-    max-height: 400px; /* Adjust this height as needed */
+    max-height: 300px; /* Adjust this height as needed */
     overflow-y: auto;
     border: 1px solid #ddd;
     padding: 10px;
-    background-color: #3d3c3c;
+    background-color: #a49797;
   }
   
   .scrollable-container pre {

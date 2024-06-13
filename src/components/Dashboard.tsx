@@ -64,7 +64,7 @@ const Dashboard = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : isLoggedIn ? (
-        <div className="dashboard-content">
+        <div className="overlay">
           <h1>Dashboard</h1>
           <div className="token-input">
             <input
