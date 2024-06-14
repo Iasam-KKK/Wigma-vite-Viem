@@ -4,6 +4,7 @@ import '../styles.css';
 import SideDrawer from './SideDrawer';
 import TokenList from './TokenList';
 import AddToken from './AddToken';
+import DashboardChart from './DashboardChart';
 
 
 const Dashboard = () => {
@@ -50,17 +51,17 @@ const Dashboard = () => {
           <>
             <h1>Dashboard</h1>
             <Routes>
-              
+              <Route path="/" element={<DashboardChart />} />
               <Route path="/tokenlist" element={<TokenList />} />
               <Route path="/addtoken" element={<AddToken />} />
             </Routes>
             <Outlet />
-            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <p>You need to be logged in to access the dashboard.</p>
         )}
       </div>
+      {isLoggedIn && <button style={{ position: 'absolute', marginTop: '10px', right: '10px' }} onClick={handleLogout}>Logout</button>}
     </div>
   );
 };

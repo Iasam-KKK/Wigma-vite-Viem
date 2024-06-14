@@ -55,11 +55,11 @@ const TokenList: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '200px', height: '100px', display: "table" , justifyContent: 'center', alignItems: 'center' }}>
       {error ? (
         <p>{error}</p>
       ) : coinData.length > 0 ? (
-        <div className="scrollable-container">
+        <div>
           <table>
             <thead>
               <tr>

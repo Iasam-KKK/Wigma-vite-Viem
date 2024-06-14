@@ -111,14 +111,15 @@ const DashboardChart: React.FC = () => {
   }
 
   return (
-    <div>
-      {chartData ? (
-        <Line options={options} data={chartData} />
-      ) : (
-        <p>Loading chart data...</p>
-      )}
-    </div>
-  );
-};
+      <div style={{ height: '400px', width: '600px' }}>
+        <h2>Price Chart</h2>
+        {chartData ? (
+          <Line options={options} data={chartData} />
+        ) : (
+          <p>Loading chart data...</p>
+        )}
+      </div>
+    );
+  };
 
 export default DashboardChart;
