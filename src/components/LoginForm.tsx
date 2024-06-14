@@ -1,28 +1,28 @@
-import { useState, FormEvent } from 'react';
-import axios from 'axios';
+import  { useState, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../store/userSlice';
+import { AppDispatch } from '../store';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
     try {
-      const response = await axios.post('http://localhost:8000/users/login/', {
-        email,
-        password,
-      });
-      const { access, refresh } = response.data;
-      localStorage.setItem('access_token', access);
-      localStorage.setItem('refresh_token', refresh);
-      // Redirect to the dashboard
-      navigate('/dashboard');
-    } catch (error) {
-      console.error(error);
-      setError('An error occurred. Please try again.');
+      const resultAction = await dispatch(login({ email, password }));
+      if (login.fulfilled.match(resultAction)) {
+        navigate('/dashboard');
+      } else if (login.rejected.match(resultAction)) {
+        setError(resultAction.payload as string || 'Login failed');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
     }
   };
 
@@ -44,7 +44,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <button type="submit">Login</button>
     </form>
   );

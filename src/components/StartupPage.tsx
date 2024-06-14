@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import   { useState } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import '../styles.css';
@@ -17,7 +17,7 @@ const StartupPage = () => {
           {!showRegister ? (
             <LoginForm />
           ) : (
-            <RegisterForm onRegisterSuccess={() => {}} />
+            <RegisterForm onRegisterSuccess={() => setShowRegister(false)} />
           )}
         </div>
         <div className="toggle-button">

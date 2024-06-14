@@ -1,30 +1,22 @@
  
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import Dashboard from './components/Dashboard';
-import PrivateRoute from './utils/PrivateRoute';
 import StartupPage from './components/StartupPage';
-import RegisterForm from './components/RegisterForm';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<StartupPage />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm onRegisterSuccess={() => {}} />} />
-        <Route
-          path="/dashboard/*"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<StartupPage />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
