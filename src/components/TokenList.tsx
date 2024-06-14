@@ -55,26 +55,28 @@ const TokenList = () => {
       ) : coinData.length > 0 ? (
         <div className="scrollable-container">
           <table>
-            <thead>
-              <tr>
-                
-                <th>Name</th>
-                <th>Symbol</th>
-                <th>Price (USD)</th>
-                <th>Last Updated</th>
-              </tr>
-            </thead>
-            <tbody>
-              {coinData.map((coin) => (
-                <tr key={coin.id}>
-                  <td>{coin.name}</td>
-                  <td>{coin.symbol}</td>
-                  <td>{coin.quote.USD.price}</td>
-                  <td>{coin.last_updated}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Network</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {coinData.map((coin) => (
+      <tr key={coin.id}>
+        <td>{coin.name}</td>
+        <td>{coin.symbol}</td>
+        <td>Example</td> {/* Replace with the actual network name */}
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
         </div>
       ) : (
         <p>Loading...</p>

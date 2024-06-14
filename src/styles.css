@@ -30,7 +30,6 @@ body {
 .overlay {
   background-color: rgba(220, 206, 206, 0.8);
   padding: 30px;
-  margin-left: 100%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -42,7 +41,6 @@ body {
 .form-container {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 30px;
-  margin-left: 0%;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -83,99 +81,205 @@ body {
 .toggle-button button:hover {
   background-color: #ff7f1a;
 }
-  
-  .dashboard {
-    display: flex;
-    justify-content: center;
-    margin-left: 40%;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-  }
-  
-  .dashboard-content {
-    background-color: rgba(58, 55, 55, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(173, 158, 158, 0.1);
-  }
-  
-  .token-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .token-input input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .token-input button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .token-input button:hover {
-    background-color: #ff7f1a;
-  }
-  
-  .crypto-info table,
-  .token-list ul {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .crypto-info table th,
-  .crypto-info table td {
-    padding: 10px;
-    border: 1px solid #232121;
-    text-align: left;
-  }
-  
-  .nav-buttons {
-    margin-bottom: 20px;
-  }
-  
-  .nav-buttons button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .nav-buttons button:hover {
-    background-color: #ff7f1a;
-  }
 
-  .crypto-info {
-    margin: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .crypto-info h2 {
-    text-align: center;
-  }
-  
-  .scrollable-container {
-    max-height: 300px; /* Adjust this height as needed */
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    background-color: #a49797;
-  }
-  
-  .scrollable-container pre {
-    white-space: pre-wrap; /* Ensure long lines wrap */
-    word-wrap: break-word; /* Break long words if necessary */
-  }
+.dashboard {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-content {
+  flex: 1;
+  background-color: #f5f5f5;
+  padding: 20px;
+  overflow: auto;
+}
+
+.side-drawer {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--secondary-color);
+  color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--primary-color);
+}
+
+.token-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.token-input input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.token-input button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.token-input button:hover {
+  background-color: #ff7f1a;
+}
+
+.crypto-info table,
+.token-list ul {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.crypto-info table th,
+.crypto-info table td {
+  padding: 10px;
+  border: 1px solid #232121;
+  text-align: left;
+}
+
+.nav-buttons {
+  margin-bottom: 20px;
+}
+
+.nav-buttons button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #ff7f1a;
+}
+
+.crypto-info {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.crypto-info h2 {
+  text-align: center;
+}
+
+.scrollable-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #a49797;
+}
+
+.scrollable-container pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.side-drawer {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--secondary-color);
+  color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-out;
+  transform: translateX(-250px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--primary-color);
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.side-drawer nav {
+  flex: 1;
+}
+
+.side-drawer nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-drawer nav ul li {
+  padding: 10px;
+}
+
+.side-drawer nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+.add-token-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.side-drawer nav ul li a.active {
+  background-color: #ff7f1a;
+  color: #fff;
+}
