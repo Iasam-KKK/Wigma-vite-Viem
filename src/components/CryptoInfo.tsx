@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles.css';
 
@@ -11,7 +11,11 @@ interface CryptoInfoData {
   volume: number;
 }
 
-const CryptoInfo = () => {
+interface CryptoInfoProps {
+  symbol: string;
+}
+
+const CryptoInfo: React.FC<CryptoInfoProps> = ({ symbol }) => {
   const [cryptoInfo, setCryptoInfo] = useState<CryptoInfoData | null>(null);
   const [error, setError] = useState('');
 
@@ -20,12 +24,12 @@ const CryptoInfo = () => {
       try {
         const accessToken = localStorage.getItem('access_token');
         if (accessToken) {
-          const response = await axios.get('http://localhost:8000/cryptoinfo', {
+          const response = await axios.get(`http://localhost:8000/tokens/${symbol}`, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
           });
-          console.log('CryptoInfo response:', response.data); // Log the response data
+          console.log('CryptoInfo response:', response.data);
           setCryptoInfo(response.data);
         } else {
           setError('You need to be logged in to view the crypto info.');
@@ -37,7 +41,7 @@ const CryptoInfo = () => {
     };
 
     fetchCryptoInfo();
-  }, []);
+  }, [symbol]);
 
   return (
     <div className="crypto-info">
@@ -45,6 +49,7 @@ const CryptoInfo = () => {
         <p>{error}</p>
       ) : cryptoInfo ? (
         <div className="scrollable-container">
+          <h3>Crypto Info for {cryptoInfo.name}</h3>
           <pre>
             {JSON.stringify(cryptoInfo, null, 2)}
           </pre>

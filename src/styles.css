@@ -90,27 +90,12 @@ body {
 
 .dashboard-content {
   flex: 1;
-  background-color: #f5f5f5;
+  background-color: rgba(58, 55, 55, 0.9);
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(173, 158, 158, 0.1);
+  margin: 20px;
   overflow: auto;
-}
-
-.side-drawer {
-  width: 250px;
-  height: 100vh;
-  background-color: var(--secondary-color);
-  color: #fff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-}
-
-.drawer-header {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: var(--primary-color);
 }
 
 .token-input {

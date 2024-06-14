@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import CryptoInfo from './CryptoInfo';
 
 interface CoinData {
-  id: number; // Used as the cmcid
+  id: number;
   name: string;
   symbol: string;
   quote: {
@@ -18,9 +19,10 @@ interface CoinData {
   last_updated: string;
 }
 
-const TokenList = () => {
+const TokenList: React.FC = () => {
   const [coinData, setCoinData] = useState<CoinData[]>([]);
   const [error, setError] = useState('');
+  const [selectedCoinSymbol, setSelectedCoinSymbol] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCoinData = async () => {
@@ -48,6 +50,10 @@ const TokenList = () => {
     fetchCoinData();
   }, []);
 
+  const handleInfoClick = (symbol: string) => {
+    setSelectedCoinSymbol(symbol);
+  };
+
   return (
     <div>
       {error ? (
@@ -55,32 +61,32 @@ const TokenList = () => {
       ) : coinData.length > 0 ? (
         <div className="scrollable-container">
           <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Symbol</th>
-      <th>Network</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {coinData.map((coin) => (
-      <tr key={coin.id}>
-        <td>{coin.name}</td>
-        <td>{coin.symbol}</td>
-        <td>Example</td> {/* Replace with the actual network name */}
-        <td>
-          <button>Edit</button>
-          <button>Delete</button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Network</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {coinData.map((coin) => (
+                <tr key={coin.id}>
+                  <td>{coin.name}</td>
+                  <td>{coin.symbol}</td>
+                  <td>Example</td>
+                  <td>
+                    <button onClick={() => handleInfoClick(coin.symbol)}>Info</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ) : (
         <p>Loading...</p>
       )}
+      {selectedCoinSymbol && <CryptoInfo symbol={selectedCoinSymbol} />}
     </div>
   );
 };
