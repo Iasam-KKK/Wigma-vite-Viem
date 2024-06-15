@@ -17,6 +17,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   backdrop-filter: var(--background-blur);
+  overflow: hidden;
 }
 
 .startup-page {
@@ -81,24 +82,23 @@ body {
 .toggle-button button:hover {
   background-color: #ff7f1a;
 }
-
 .dashboard {
   display: flex;
   height: 100vh;
-  overflow: hidden;
 }
 
 .dashboard-content {
   flex: 1;
-  margin-top:70px;
+  margin-top: 70px;
   margin-left: 10px;
-  height: 80vh;
-  width: 167vh;
+  height: calc(100vh - 150px);  
+  width: calc(100% - 20px); 
   background-color: rgba(58, 55, 55, 0.9);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(173, 158, 158, 0.1);
-  overflow: auto;
+  overflow-y: hidden;  
+  overflow-x: hidden;
 }
 
 .token-input {
