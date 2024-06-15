@@ -54,7 +54,7 @@ const Dashboard = () => {
         </Routes>
         <Outlet />
       </div>
-      <button style={{ position: 'absolute', top: '10px', right: '10px' }} onClick={handleLogout}>Logout</button>
+      <button style={{ position: 'absolute', top: '10px', right: '10px', height:'50px' }} onClick={handleLogout}>Logout</button>
     </div>
   );
 };

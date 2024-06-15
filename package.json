@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "@types/antd": "^1.0.0",
+    "antd": "^5.18.1",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
     "react": "^18.2.0",

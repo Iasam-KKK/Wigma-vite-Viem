@@ -55,7 +55,7 @@ const TokenList: React.FC = () => {
   };
 
   return (
-    <div style={{ width: '200px', height: '100px', display: "table" , justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ width: '165vh', height: '80vh', display: "table" , justifyContent: 'center', alignItems: 'center' }}>
       {error ? (
         <p>{error}</p>
       ) : coinData.length > 0 ? (

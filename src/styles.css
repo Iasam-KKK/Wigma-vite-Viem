@@ -90,11 +90,14 @@ body {
 
 .dashboard-content {
   flex: 1;
+  margin-top:70px;
+  margin-left: 10px;
+  height: 80vh;
+  width: 167vh;
   background-color: rgba(58, 55, 55, 0.9);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(173, 158, 158, 0.1);
-  margin: 20px;
   overflow: auto;
 }
 
@@ -126,7 +129,7 @@ body {
 
 .crypto-info table,
 .token-list ul {
-  width: 100%;
+  width: 100vh;
   margin-top: 20px;
 }
 
