@@ -5,20 +5,36 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+const COINGECKO_API_KEY = 'CG-aMPCLZt6tDD7BWzWrWukdrjB';
+
 interface CoinData {
-  id: number;
+  id: string;
   symbol: string;
   name: string;
 }
 
-interface HistoricalData {
-  timestamp: string;
-  quote: {
-    USD: {
-      price: number;
-    };
-  };
-}
+const fetchHistoricalDataFromAPI = async (coinId: string, days: number) => {
+  const endDate = new Date();
+  const startDate = new Date(endDate.getTime() - days * 24 * 60 * 60 * 1000);
+
+  try {
+    const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart/range`, {
+      params: {
+        vs_currency: 'usd',
+        from: startDate.getTime() / 1000,
+        to: endDate.getTime() / 1000,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CMC_PRO_API_KEY': COINGECKO_API_KEY,
+      },
+    });
+    return response.data.prices;
+  } catch (error) {
+    console.error('Error fetching historical data from API:', error);
+    return [];
+  }
+};
 
 const DashboardChart: React.FC = () => {
   const [chartData, setChartData] = useState<any>(null);
@@ -27,20 +43,24 @@ const DashboardChart: React.FC = () => {
   useEffect(() => {
     const fetchCoinData = async () => {
       try {
-        const accessToken = localStorage.getItem('access_token');
-        if (accessToken) {
-          const response = await axios.get('http://localhost:8000/tokens', {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
-          const coins: CoinData[] = response.data;
-          if (coins.length > 0) {
-            const historicalData = await fetchHistoricalDataFromAPI(coins[0].id);
-            createChartData(coins[0].symbol, historicalData);
-          } else {
-            setError('No coins found');
-          }
+        const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+          params: {
+            vs_currency: 'usd',
+            order: 'market_cap_desc',
+            per_page: 1,
+            page: 1,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CMC_PRO_API_KEY': COINGECKO_API_KEY,
+          },
+        });
+        const coins: CoinData[] = response.data;
+        if (coins.length > 0) {
+          const historicalData = await fetchHistoricalDataFromAPI(coins[0].id, 30);
+          createChartData(coins[0].symbol, historicalData);
+        } else {
+          setError('No coins found');
         }
       } catch (error) {
         console.error('Error fetching coin data:', error);
@@ -51,33 +71,9 @@ const DashboardChart: React.FC = () => {
     fetchCoinData();
   }, []);
 
-  const fetchHistoricalDataFromAPI = async (coinId: number) => {
-    try {
-      const response = await axios.get(
-        `https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/historical`,
-        {
-          params: {
-            id: coinId,
-            time_start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-            time_end: new Date().toISOString(),
-            interval: '1d',
-          },
-          headers: {
-            'X-CMC_PRO_API_KEY': '61d3d338-4fa3-4ffc-8c6e-0caef568bb9b',
-          },
-        }
-      );
-      return response.data.data[coinId].quotes;
-    } catch (error) {
-      console.error('Error fetching historical data from API:', error);
-      setError('Error fetching historical data');
-      return [];
-    }
-  };
-
-  const createChartData = (symbol: string, historicalData: HistoricalData[]) => {
-    const labels = historicalData.map((data) => new Date(data.timestamp).toLocaleDateString());
-    const prices = historicalData.map((data) => data.quote.USD.price);
+  const createChartData = (symbol: string, historicalData: [number, number][]) => {
+    const labels = historicalData.map((data) => new Date(data[0]).toLocaleDateString());
+    const prices = historicalData.map((data) => data[1]);
 
     setChartData({
       labels,
@@ -111,15 +107,15 @@ const DashboardChart: React.FC = () => {
   }
 
   return (
-      <div style={{ height: '400px', width: '600px' }}>
-        <h2>Price Chart</h2>
-        {chartData ? (
-          <Line options={options} data={chartData} />
-        ) : (
-          <p>Loading chart data...</p>
-        )}
-      </div>
-    );
-  };
+    <div style={{ height: '400px', width: '600px' }}>
+      <h2>Price Chart</h2>
+      {chartData ? (
+        <Line options={options} data={chartData} />
+      ) : (
+        <p>Loading chart data...</p>
+      )}
+    </div>
+  );
+};
 
 export default DashboardChart;

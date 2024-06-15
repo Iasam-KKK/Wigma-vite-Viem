@@ -4,9 +4,11 @@ import axios from 'axios';
 const AddToken = () => {
   const [tokenId, setTokenId] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [error, setError] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);  
 
-  const handleAddToken = async () => {
+  const handleAddToken = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();  
+
     try {
       const accessToken = localStorage.getItem('access_token');
       await axios.post(
@@ -18,33 +20,41 @@ const AddToken = () => {
           },
         }
       );
+
+     
       setTokenId('');
       setQuantity('');
+      setFormSubmitted(true);
     } catch (error) {
-      console.error(error);
-      setError('An error occurred. Please try again.');
+      console.error('Error adding token:', error);
     }
   };
+
+ 
+  if (formSubmitted) {
+    return <AddToken />;
+  }
 
   return (
     <div className="add-token-container">
       <h2>Add Token</h2>
-      <div className="token-input">
-        <input
-          type="text"
-          placeholder="Token ID"
-          value={tokenId}
-          onChange={(e) => setTokenId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <button onClick={handleAddToken}>Add</button>
-        {error && <p>{error}</p>}
-      </div>
+      <form onSubmit={handleAddToken}>
+        <div className="token-input">
+          <input
+            type="text"
+            placeholder="Token ID"
+            value={tokenId}
+            onChange={(e) => setTokenId(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          <button type="submit">Add</button>
+        </div>
+      </form>
     </div>
   );
 };
