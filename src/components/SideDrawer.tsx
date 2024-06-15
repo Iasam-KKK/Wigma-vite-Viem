@@ -56,13 +56,13 @@ const SideDrawer = () => {
           <li style={location.pathname === '/dashboard/tokenlist' ? { ...linkStyles, ...activeLinkStyles } : linkStyles}>
             <Link to="/dashboard/tokenlist">
               <i className="fas fa-list" style={iconStyles}></i>
-              Token List
+              Tokens List
             </Link>
           </li>
-          <li style={location.pathname === '/dashboard/addtoken' ? { ...linkStyles, ...activeLinkStyles } : linkStyles}>
-            <Link to="/dashboard/addtoken">
+          <li style={location.pathname === '/dashboard/crytoinfoUser' ? { ...linkStyles, ...activeLinkStyles } : linkStyles}>
+            <Link to="/dashboard/cryptoinfoUser">
               <i className="fas fa-plus" style={iconStyles}></i>
-              Add Token
+              My Crypto's
             </Link>
           </li>
         </ul>

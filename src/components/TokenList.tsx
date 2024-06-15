@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CryptoInfo from './CryptoInfo';
+import AddToken from './AddToken';
 
 interface CoinData {
   id: number;
@@ -22,7 +22,8 @@ interface CoinData {
 const TokenList: React.FC = () => {
   const [coinData, setCoinData] = useState<CoinData[]>([]);
   const [error, setError] = useState('');
-  const [selectedCoinSymbol, setSelectedCoinSymbol] = useState<string | null>(null);
+  const [selectedCoin, setSelectedCoin] = useState<CoinData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCoinData = async () => {
@@ -50,8 +51,14 @@ const TokenList: React.FC = () => {
     fetchCoinData();
   }, []);
 
-  const handleInfoClick = (symbol: string) => {
-    setSelectedCoinSymbol(symbol);
+  const handleInfoClick = (coin: CoinData) => {
+    setSelectedCoin(coin);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedCoin(null);
+    setIsModalOpen(false);
   };
 
   return (
@@ -60,6 +67,7 @@ const TokenList: React.FC = () => {
         <p>{error}</p>
       ) : coinData.length > 0 ? (
         <div>
+          <AddToken />
           <table>
             <thead>
               <tr>
@@ -76,7 +84,7 @@ const TokenList: React.FC = () => {
                   <td>{coin.symbol}</td>
                   <td>Example</td>
                   <td>
-                    <button onClick={() => handleInfoClick(coin.symbol)}>Info</button>
+                    <button onClick={() => handleInfoClick(coin)}>Info</button>
                   </td>
                 </tr>
               ))}
@@ -86,7 +94,16 @@ const TokenList: React.FC = () => {
       ) : (
         <p>Loading...</p>
       )}
-      {selectedCoinSymbol && <CryptoInfo symbol={selectedCoinSymbol} />}
+
+      {isModalOpen && selectedCoin && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>{selectedCoin.name} ({selectedCoin.symbol})</h2>
+            <pre>{JSON.stringify(selectedCoin, null, 2)}</pre>
+            <button onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

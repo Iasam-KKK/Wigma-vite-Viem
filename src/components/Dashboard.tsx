@@ -6,8 +6,9 @@ import { RootState, AppDispatch } from '../store';
 import '../styles.css';
 import SideDrawer from './SideDrawer';
 import TokenList from './TokenList';
-import AddToken from './AddToken';
+ 
 import DashboardChart from './DashboardChart';
+import CryptoInfoUser from './cryptoInfoUser';
 
 const Dashboard = () => {
   const { isLoggedIn, isLoading, error, userData } = useSelector((state: RootState) => state.user);
@@ -45,12 +46,12 @@ const Dashboard = () => {
     <div className="dashboard">
       <SideDrawer />
       <div className="dashboard-content">
-        <h1>Dashboard</h1>
+       
         {userData && <p>Welcome, {userData.username}!</p>}
         <Routes>
           <Route path="/" element={<DashboardChart />} />
           <Route path="/tokenlist" element={<TokenList />} />
-          <Route path="/addtoken" element={<AddToken />} />
+          <Route path="/cryptoinfoUser" element={<CryptoInfoUser />} />
         </Routes>
         <Outlet />
       </div>
