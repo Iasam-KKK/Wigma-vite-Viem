@@ -10,6 +10,7 @@ import TokenList from './TokenList';
 import DashboardChart from './DashboardChart';
 import CryptoInfoUser from './cryptoInfoUser';
 
+ 
 const Dashboard = () => {
   const { isLoggedIn, isLoading, error, userData } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
@@ -52,6 +53,7 @@ const Dashboard = () => {
           <Route path="/" element={<DashboardChart />} />
           <Route path="/tokenlist" element={<TokenList />} />
           <Route path="/cryptoinfoUser" element={<CryptoInfoUser />} />
+          
         </Routes>
         <Outlet />
       </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles.css';
+ 
+import ProductCard from './ProductCard';
 
 interface CryptoInfoData {
   id: number;
@@ -77,6 +79,14 @@ const CryptoInfoUser: React.FC = () => {
               ))}
             </tbody>
           </table>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+          <ProductCard product={{
+           
+           name: "Futuristic VR Headset",
+           price: 0.00001
+         }} 
+       />
+       </div>
         </div>
       ) : (
         <p>Loading...</p>
@@ -87,6 +97,7 @@ const CryptoInfoUser: React.FC = () => {
           <div className="modal-content">
             <h2>{selectedCrypto.name} ({selectedCrypto.symbol})</h2>
             <pre>{JSON.stringify(selectedCrypto, null, 2)}</pre>
+            
             <button onClick={closeModal}>Close</button>
           </div>
         </div>
