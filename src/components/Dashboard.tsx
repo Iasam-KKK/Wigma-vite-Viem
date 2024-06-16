@@ -9,6 +9,7 @@ import TokenList from './TokenList';
  
 import DashboardChart from './DashboardChart';
 import CryptoInfoUser from './cryptoInfoUser';
+import BuyProduct from './BuyProduct';
 
  
 const Dashboard = () => {
@@ -53,6 +54,7 @@ const Dashboard = () => {
           <Route path="/" element={<DashboardChart />} />
           <Route path="/tokenlist" element={<TokenList />} />
           <Route path="/cryptoinfoUser" element={<CryptoInfoUser />} />
+          <Route path="/BuyProduct" element={<BuyProduct/>} />
           
         </Routes>
         <Outlet />

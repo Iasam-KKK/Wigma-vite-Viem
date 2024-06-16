@@ -65,6 +65,12 @@ const SideDrawer = () => {
               My Crypto's
             </Link>
           </li>
+          <li style={location.pathname === '/dashboard/BuyProduct' ? { ...linkStyles, ...activeLinkStyles } : linkStyles}>
+            <Link to="/dashboard/BuyProduct">
+              <i className="fas fa-plus" style={iconStyles}></i>
+              Buy Products
+            </Link>
+          </li>
            
         </ul>
       </nav>
