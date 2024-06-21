@@ -71,6 +71,12 @@ const SideDrawer = () => {
               Buy Products
             </Link>
           </li>
+          <li style={location.pathname === '/dashboard/Home' ? { ...linkStyles, ...activeLinkStyles } : linkStyles}>
+            <Link to="/dashboard/Home">
+              <i className="fas fa-plus" style={iconStyles}></i>
+              Home
+            </Link>
+          </li>
            
         </ul>
       </nav>

@@ -14,6 +14,7 @@ const TokenList: React.FC = () => {
            price: 0.00001
          }} 
        />
+   
        </div>
        
   );
